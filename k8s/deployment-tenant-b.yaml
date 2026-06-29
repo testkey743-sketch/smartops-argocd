@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tenant-b-deployment
+  namespace: tenant-b
+  labels:
+    tenant: tenant-b
+    environment: production
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: tenant-b-app
+      tenant: tenant-b
+  template:
+    metadata:
+      labels:
+        app: tenant-b-app
+        tenant: tenant-b
+        environment: production
+    spec:
+      containers:
+        - name: tenant-b-app
+          image: your-registry/your-app:latest   # 👈 replace this
+          ports:
+            - containerPort: 8080
+          env:
+            - name: TENANT_ID
+              value: "tenant-b"
+            - name: ENVIRONMENT
+              value: "production"
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "250m"
+            limits:
+              memory: "256Mi"
+              cpu: "500m"
