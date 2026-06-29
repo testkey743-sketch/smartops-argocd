@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: smartops-app
+  namespace: tenant-a
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: smartops-app
+  template:
+    metadata:
+      labels:
+        app: smartops-app
+    spec:
+      containers:
+      - name: smartops-app
+        image: nginx:latest
+        ports:
+        - containerPort: 80
