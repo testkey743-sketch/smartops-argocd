@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
         - name: tenant-b-app
-          image: your-registry/your-app:latest   # 👈 replace this
+          image: nginx:latest   # 👈 replace this
           ports:
             - containerPort: 8080
           env:
